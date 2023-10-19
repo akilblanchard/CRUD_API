@@ -1,13 +1,16 @@
-resource "aws_dynamodb_table" "crud_db" {
-  name           = "http-crud-db"
+resource "aws_dynamodb_table" "crud-api-db" {
+  name           = "crud-api-db"
   billing_mode   = "PROVISIONED"
   read_capacity  = 20
   write_capacity = 20
-  hash_key       = "cruddapiID"
+  hash_key       = "id"
+
   attribute {
-    name = "cruddapiID"
+    name = "id"
     type = "S"
   }
+
+
 
   ttl {
     attribute_name = "Expiry"
@@ -20,7 +23,7 @@ resource "aws_dynamodb_table" "crud_db" {
   lifecycle { ignore_changes = [write_capacity, read_capacity] }
 
   tags = {
-    Name = "CRUDApp_DB"
+    Name = "crud-api-db"
   }
 }
 
@@ -29,7 +32,7 @@ resource "aws_dynamodb_table" "crud_db" {
 resource "aws_appautoscaling_target" "dynamodb_table_read_target" {
   max_capacity       = 100
   min_capacity       = 5
-  resource_id        = "table/http-crud-db"
+  resource_id        = "table/crud-api-db"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
   service_namespace  = "dynamodb"
 }
@@ -49,3 +52,13 @@ resource "aws_appautoscaling_policy" "dynamodb_table_read_policy" {
     target_value = 70 #set utilization to 70%
   }
 }
+
+
+
+
+
+
+
+
+
+
