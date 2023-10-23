@@ -1,3 +1,4 @@
+#DynamoDB Table
 resource "aws_dynamodb_table" "crud-api-db" {
   name           = "crud-api-db"
   billing_mode   = "PROVISIONED"
@@ -9,8 +10,6 @@ resource "aws_dynamodb_table" "crud-api-db" {
     name = "id"
     type = "S"
   }
-
-
 
   ttl {
     attribute_name = "Expiry"
@@ -27,7 +26,6 @@ resource "aws_dynamodb_table" "crud-api-db" {
   }
 }
 
-
 #DynamoDB AutoScaling
 resource "aws_appautoscaling_target" "dynamodb_table_read_target" {
   max_capacity       = 100
@@ -36,7 +34,6 @@ resource "aws_appautoscaling_target" "dynamodb_table_read_target" {
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
   service_namespace  = "dynamodb"
 }
-
 resource "aws_appautoscaling_policy" "dynamodb_table_read_policy" {
   name               = "DynamoDBReadCapacityUtilization:${aws_appautoscaling_target.dynamodb_table_read_target.resource_id}"
   policy_type        = "TargetTrackingScaling"
@@ -52,13 +49,3 @@ resource "aws_appautoscaling_policy" "dynamodb_table_read_policy" {
     target_value = 70 #set utilization to 70%
   }
 }
-
-
-
-
-
-
-
-
-
-
