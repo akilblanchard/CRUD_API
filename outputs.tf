@@ -1,9 +1,5 @@
-output "function_name" {
-  description = "Name of the Lambda function."
-  value       = aws_lambda_function.crud-lambda.function_name
+output "api_endpoint" {
+  value       = aws_apigatewayv2_api.crud_api_gw.api_endpoint
+  description = "Test API endpoint with this address"
 }
 
-output "base_url" {
-  description = "Base URL for API Gateway stage."
-  value       = aws_apigatewayv2_stage.stage_crud_api.invoke_url
-}
