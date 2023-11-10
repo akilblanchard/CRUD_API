@@ -59,7 +59,13 @@ else
     sleep 2
 
     terraform init
-    terraform apply 
+    terraform apply
+
+    sleep 2
+    
+    terraform apply -target=aws_dynamodb_table.crud-api-db
+    terraform apply -target=aws_appautoscaling_policy.dynamodb_table_read_policy -target=aws_appautoscaling_policy.dynamodb_table_write_policy
+
 
     echo "DONE"
     
