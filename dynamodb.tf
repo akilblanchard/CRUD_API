@@ -2,7 +2,7 @@
 resource "aws_dynamodb_table" "crud-api-db" {
   name           = "crud-api-db"
   billing_mode   = "PROVISIONED"
-  read_capacity  = 1  
+  read_capacity = 1
   write_capacity = 1
   hash_key       = "id"
 
