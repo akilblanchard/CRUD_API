@@ -1,0 +1,42 @@
+#Create Items
+curl -X POST -H "Content-Type: application/json" -d '{
+  "id": "1",
+  "price": 499,
+  "name": "iPhone 13"
+}' https://y9z4yh1j70.execute-api.us-east-1.amazonaws.com/items
+
+curl -X POST -H "Content-Type: application/json" -d '{
+    "id": "2",
+    "price": 599,
+    "name": "iPhone 14"
+}' https://edk6c2zzvb.execute-api.us-east-1.amazonaws.com/items
+
+curl -X POST -H "Content-Type: application/json" -d '{
+    "id": "3",
+    "price": 999,
+    "name": "iPhone 15"
+}' https://edk6c2zzvb.execute-api.us-east-1.amazonaws.com/items
+
+
+
+
+#Read Items
+#Get all items
+
+curl -X GET https://edk6c2zzvb.execute-api.us-east-1.amazonaws.com/items
+
+
+
+#Update Item
+#This updates item number three
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"id": "3", "price": 20.00, "name": "Updated Item"}' \
+  https://edk6c2zzvb.execute-api.us-east-1.amazonaws.com/items
+
+
+#Delete Item
+
+curl -X DELETE \
+  -H "Content-Type: application/json" \
+  https://edk6c2zzvb.execute-api.us-east-1.amazonaws.com/items
